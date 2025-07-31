@@ -1,0 +1,88 @@
+/* src/pages/admin/AddEditBarber.css */
+
+.form-container {
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 30px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.barber-form .form-group {
+  margin-bottom: 20px;
+}
+
+.barber-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #4a5568;
+}
+
+.barber-form input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.form-actions button, .form-actions .cancel-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+}
+
+.save-button {
+  background-color: #38a169; /* Verde */
+  color: white;
+}
+
+.save-button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.cancel-button {
+  background-color: #a0aec0; /* Gris */
+  color: white;
+}
+
+/* Añade esto al final de src/pages/admin/AddEditBarber.css */
+
+.barber-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 16px;
+  background-color: white; /* Para asegurar que el fondo sea blanco */
+}
+
+.barber-form textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e0;
+  border-radius: 6px;
+  font-size: 16px;
+  font-family: inherit; /* Para que use la misma fuente que los inputs */
+  resize: vertical; /* Permite al usuario ajustar la altura */
+}

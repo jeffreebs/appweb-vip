@@ -1,0 +1,139 @@
+/* src/pages/admin/ReportsScreen.css */
+
+.reports-container {
+  padding: 20px;
+  max-width: 900px;
+  margin: 20px auto;
+  font-family: sans-serif;
+}
+
+.reports-container h1 {
+  margin-bottom: 10px;
+}
+
+.back-button {
+  display: inline-block;
+  background-color: #718096;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.filters-panel {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: flex-end;
+  margin-bottom: 30px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-group label {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #4a5568;
+}
+
+.filter-group input[type="date"],
+.filter-group select {
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e0;
+  font-size: 16px;
+}
+
+.generate-button {
+  padding: 10px 20px;
+  background-color: #6b46c1;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.generate-button:disabled {
+  background-color: #a0aec0;
+  cursor: not-allowed;
+}
+
+.report-results {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.report-results ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.report-results li {
+  padding: 10px;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.report-results li:last-child {
+  border-bottom: none;
+}
+
+.report-results {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-top: 30px;
+}
+
+/* ¡NUEVOS ESTILOS! */
+.report-summary {
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.report-summary h3, .report-details h3 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #2d3748;
+}
+
+.report-summary p {
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.report-details ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.report-details li {
+  padding: 12px;
+  border-bottom: 1px solid #e2e8f0;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.report-details li:last-child {
+  border-bottom: none;
+}
+
+.report-details li span {
+  color: #2c7a7b; /* Verde azulado para los ingresos */
+  font-weight: 600;
+}

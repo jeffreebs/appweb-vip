@@ -1,0 +1,86 @@
+/* src/pages/client/GalleryScreen.css */
+
+.gallery-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.gallery-container h1, .gallery-container h2 {
+    text-align: center;
+    color: #2d3748;
+}
+.gallery-container h1 { margin-bottom: 10px; }
+.gallery-container h2 { margin-bottom: 30px; }
+
+.gallery-container .back-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* --- Estilos de la Galería de Imágenes --- */
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.image-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    height: 300px; /* Altura fija para las tarjetas */
+}
+
+.image-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Asegura que la imagen cubra la tarjeta sin deformarse */
+    transition: transform 0.3s ease;
+}
+
+.image-card:hover img {
+    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+}
+
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    padding: 40px 20px 20px;
+    color: white;
+}
+
+.image-overlay p {
+    margin: 0;
+    font-weight: 600;
+}
+
+/* --- Estilos de la Sección de Tendencias --- */
+.trends-section {
+    margin-top: 60px;
+}
+
+.trends-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.trend-card {
+    background-color: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    border-left: 5px solid #3182ce;
+}
+
+.trend-card h3 {
+    margin-top: 0;
+}

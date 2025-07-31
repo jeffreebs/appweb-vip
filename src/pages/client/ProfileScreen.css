@@ -1,0 +1,124 @@
+/* src/pages/client/ProfileScreen.css */
+
+.profile-container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.profile-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.profile-form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+}
+
+.form-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e2e8f0;
+}
+.form-section:last-of-type {
+    border-bottom: none;
+    padding-bottom: 0;
+}
+
+.form-group-profile {
+    margin-bottom: 20px;
+}
+
+.form-group-profile label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4a5568;
+}
+
+.form-group-profile input,
+.form-group-profile select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    background-color: #f7fafc;
+}
+
+.form-group-profile input:disabled {
+    background-color: #e2e8f0;
+    cursor: not-allowed;
+    color: #718096;
+}
+
+.save-btn-profile {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: white;
+    background-color: #3182ce;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.save-btn-profile:hover {
+    background-color: #2b6cb0;
+}
+.save-btn-profile:disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+}
+
+.profile-container .back-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.rank-card {
+    padding: 20px;
+    border-radius: 8px;
+    color: white;
+    margin-top: 10px;
+    border-left: 5px solid;
+}
+
+.rank-card h4 {
+    margin: 0 0 10px 0;
+    font-size: 1.2em;
+}
+
+.rank-card p {
+    margin: 0;
+    font-size: 0.9em;
+    opacity: 0.9;
+}
+
+/* Colores específicos para cada rango */
+.rank-novato {
+    background-color: #718096; /* Gris */
+    border-color: #4a5568;
+}
+.rank-fan-ocasional {
+    background-color: #3182ce; /* Azul */
+    border-color: #2b6cb0;
+}
+.rank-cliente-frecuente {
+    background-color: #2c7a7b; /* Verde azulado */
+    border-color: #285e61;
+}
+.rank-embajador-vipcuts {
+    background-color: #b7791f; /* Dorado */
+    border-color: #975a16;
+}

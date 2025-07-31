@@ -1,0 +1,110 @@
+/* src/pages/admin/AppointmentsManagement.css */
+
+.appointments-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 20px auto;
+}
+
+.appointments-container h1 {
+  margin-bottom: 10px;
+}
+
+.back-button {
+  display: inline-block;
+  background-color: #718096;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.content-layout {
+  display: flex;
+  gap: 30px;
+}
+
+.filters-column {
+  flex: 0 0 350px; /* Ancho fijo para la columna de filtros */
+}
+
+/* Estilos para el calendario */
+.custom-calendar {
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 10px;
+}
+
+/* Estilos para el dropdown de barberos */
+.barber-filter {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e0;
+  font-size: 16px;
+}
+
+.appointments-list-column {
+  flex-grow: 1; /* Ocupa el resto del espacio */
+}
+
+.appointment-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+}
+
+.appointment-card p {
+  margin: 5px 0;
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+}
+
+/* src/pages/admin/AppointmentsManagement.css */
+
+/* ... (los estilos existentes hasta appointment-card) */
+
+.appointment-card {
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  margin-bottom: 15px;
+  /* ¡NUEVO! Usamos flexbox para alinear la info y los botones */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.appointment-card p {
+  margin: 5px 0;
+}
+
+/* ¡NUEVO! Contenedor para los botones */
+.appointment-actions {
+  display: flex;
+  flex-direction: column; /* Apila los botones verticalmente */
+  gap: 5px; /* Espacio entre botones */
+}
+
+/* ¡NUEVO! Estilos para los botones dentro de la tarjeta */
+.appointment-actions button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  color: white;
+  min-width: 70px; /* Ancho mínimo para que se vean bien */
+}

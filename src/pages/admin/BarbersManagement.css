@@ -1,0 +1,204 @@
+/* src/pages/admin/BarbersManagement.css */
+
+.management-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
+}
+
+.management-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.back-button {
+  background-color: #718096;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.barber-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Espacio entre cada barbero */
+}
+
+.barber-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
+}
+
+.barber-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.barber-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover; /* Asegura que la imagen no se deforme */
+}
+
+.barber-info {
+  flex-grow: 1; /* Ocupa el espacio sobrante */
+}
+
+.barber-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.barber-specialty {
+  font-size: 14px;
+  color: #718096;
+  margin: 5px 0 0;
+}
+
+.barber-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 8px;
+  color: white;
+}
+
+.edit-button {
+  background-color: #3182ce; /* Azul */
+}
+
+.delete-button {
+  background-color: #e53e3e; /* Rojo */
+}
+
+/* src/pages/admin/BarbersManagement.css */
+
+.management-container {
+  padding: 20px;
+  max-width: 800px;
+  margin: 40px auto;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.management-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 15px;
+  margin-bottom: 10px;
+}
+
+.management-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.back-button, .add-button {
+  color: white;
+  padding: 8px 12px;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.back-button {
+  background-color: #718096; /* Gris */
+}
+
+.add-button {
+  background-color: #38a169; /* Verde */
+}
+
+.barber-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.barber-item {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  transition: box-shadow 0.2s;
+}
+
+.barber-item:hover {
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.barber-avatar {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 20px;
+  object-fit: cover;
+}
+
+.barber-info {
+  flex-grow: 1;
+}
+
+.barber-name {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.barber-specialty {
+  font-size: 14px;
+  color: #718096;
+  margin: 5px 0 0;
+}
+
+.barber-actions button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 8px;
+  color: white;
+}
+
+.edit-button {
+  background-color: #3182ce; /* Azul */
+}
+
+.delete-button {
+  background-color: #e53e3e; /* Rojo */
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  font-size: 18px;
+}

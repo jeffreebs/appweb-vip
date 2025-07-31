@@ -1,0 +1,180 @@
+/* src/pages/client/MyAppointmentsScreen.css */
+
+.my-appointments-container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.my-appointments-container h1 {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.back-link {
+    display: block;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #3182ce;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.tab-button {
+    padding: 15px 25px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    color: #718096;
+    position: relative;
+    transition: color 0.2s ease;
+}
+
+.tab-button:hover {
+    color: #2d3748;
+}
+
+.tab-button.active {
+    color: #3182ce;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background-color: #3182ce;
+    border-radius: 3px 3px 0 0;
+}
+
+.appointments-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.appointment-item-client {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.service-name-client {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #2d3748;
+    margin-top: 0;
+}
+
+.appointment-details p {
+    margin: 5px 0;
+    color: #4a5568;
+}
+
+.cancel-btn-client {
+    padding: 8px 15px;
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.cancel-btn-client:hover {
+    background-color: #c53030;
+}
+
+.appointment-actions-client {
+    display: flex;
+    flex-direction: column;
+    gap: 8px; /* Espacio entre botones */
+}
+
+/* Estilo base para ambos botones */
+.appointment-actions-client button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    min-width: 100px; /* Ancho mínimo */
+}
+
+/* Estilos específicos para el botón de editar */
+.edit-btn-client {
+    background-color: #3182ce;
+    color: white;
+}
+.edit-btn-client:hover {
+    background-color: #2b6cb0;
+}
+.edit-btn-client.disabled {
+    background-color: #a0aec0;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Estilos para el botón de cancelar (ya los tenías) */
+.cancel-btn-client {
+    background-color: #e53e3e;
+    color: white;
+}
+.cancel-btn-client:hover {
+    background-color: #c53030;
+}
+
+.rating-section {
+    width: 200px; /* Ancho fijo para el contenedor de calificación */
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.rating-section p {
+    margin: 0;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.comment-box {
+    width: 100%;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px;
+    font-size: 14px;
+    resize: vertical;
+}
+
+.rating-display {
+    text-align: right;
+}
+
+.rating-display p {
+    margin: 0 0 5px 0;
+    font-size: 0.9em;
+    font-weight: 500;
+}
+
+.comment-display {
+    font-style: italic;
+    color: #718096;
+    font-size: 0.85em !important;
+}

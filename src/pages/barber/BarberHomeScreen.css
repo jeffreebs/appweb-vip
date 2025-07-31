@@ -1,0 +1,41 @@
+/* src/pages/barber/BarberHomeScreen.css */
+
+.barber-dashboard-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.barber-dashboard-container h1 {
+    margin-bottom: 5px;
+}
+
+.barber-dashboard-container p {
+    margin-bottom: 20px;
+    color: #4a5568;
+}
+
+.logout-button-barber {
+    margin-top: 30px;
+    padding: 10px 20px;
+    background-color: #e53e3e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.barber-dashboard-container {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+    /* ¡NUEVO! Le damos un fondo semitransparente para que se lea el texto */
+    background-color: rgba(255, 255, 255, 0.95); /* Blanco con 95% de opacidad */
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    /* ¡NUEVO! El texto dentro será oscuro para que contraste */
+    color: #2d3748;
+}
+/* Reutilizamos los estilos del layout del admin para el calendario y la lista */
+/* Esto lo hacemos a través de los className en el JSX */
