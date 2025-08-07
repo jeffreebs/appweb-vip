@@ -5,6 +5,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { collection, onSnapshot, orderBy, query, doc, deleteDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import './BarbersManagement.css';
+import fondoBarberia from '../../assets/logo_mejorado.png';
+
 
 const BarbersManagementScreen = () => {
   const [barbers, setBarbers] = useState([]);
@@ -52,35 +54,45 @@ const BarbersManagementScreen = () => {
   }
 
   return (
-    <div className="management-container">
-      <div className="management-header">
-        <h1>Gestión de Barberos</h1>
-        <Link to="/admin/barber/add" className="add-button">Añadir Barbero</Link>
-      </div>
-      <Link to="/" className="back-button" style={{marginBottom: '20px', display: 'inline-block'}}>Volver al Panel</Link>
+    <div className="barbers-management-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+      <div className="barbers-management-container">
+        
+        <header className="barbers-header">
+          <div className="bm-title">
+            <h1>Gestión de Barberos</h1>
+          </div>
+          <div className="bm-actions">
+            <Link to="/" className="bm-button secondary">Volver al Panel</Link>
+            <Link to="/admin/barber/add" className="bm-button primary">Añadir Barbero</Link>
+          </div>
+        </header>
 
-      <div className="barber-list">
-        {barbers.length > 0 ? (
-          barbers.map((barber) => (
-            <div key={barber.id} className="barber-item">
-              <img 
-                src={barber.imageUrl || 'https://via.placeholder.com/150'} 
-                alt={barber.name} 
-                className="barber-avatar"
-              />
-              <div className="barber-info">
-                <p className="barber-name">{barber.name}</p>
-                <p className="barber-specialty">{barber.specialty}</p>
+        <main className="barbers-list">
+          {barbers.length > 0 ? (
+            barbers.map((barber) => (
+              <div key={barber.id} className="barber-card">
+                <div className="barber-avatar">
+                  <img 
+                    src={barber.imageUrl || 'https://i.pravatar.cc/150?u=' + barber.id} // Placeholder más variado
+                    alt={barber.name} 
+                  />
+                </div>
+                <div className="barber-info">
+                  <h3>{barber.name}</h3>
+                  <p>{barber.specialty}</p>
+                </div>
+                <div className="barber-actions">
+                  <button onClick={() => handleEdit(barber.id)} className="edit-button">Editar</button>
+                  <button onClick={() => handleDelete(barber.id, barber.name)} className="delete-button">Eliminar</button>
+                </div>
               </div>
-              <div className="barber-actions">
-                <button onClick={() => handleEdit(barber.id)} className="edit-button">Editar</button>
-                <button onClick={() => handleDelete(barber.id, barber.name)} className="delete-button">Eliminar</button>
-              </div>
+            ))
+          ) : (
+            <div className="barber-card-empty">
+              <p>No hay barberos registrados. Haz clic en "Añadir Barbero" para empezar.</p>
             </div>
-          ))
-        ) : (
-          <p>No hay barberos registrados. Haz clic en "Añadir Barbero" para empezar.</p>
-        )}
+          )}
+        </main>
       </div>
     </div>
   );

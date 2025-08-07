@@ -6,25 +6,35 @@
   justify-content: center; /* Centra horizontalmente */
   align-items: center;    /* Centra verticalmente */
   min-height: 100vh;      /* Ocupa el 100% de la altura de la pantalla */
-  background-color: #f0f2f5; /* Un gris claro de fondo, como en tu app nativa */
+  /* background: linear-gradient(90deg, #d4b556, #b4973f, #8a6f1f);Un gris claro de fondo, como en tu app nativa */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/logo_mejorado.png');
 }
 
 /* La "caja" que contendrá el formulario */
 .auth-box {
-  background-color: white;
+  /* --- EFECTO CRISTAL ESMERILADO --- */
+  background: rgba(255, 255, 255, 0.15); /* Color blanco con MUCHA transparencia */
+  backdrop-filter: blur(10px);             /* ¡LA MAGIA! Difumina lo que está detrás */
+  -webkit-backdrop-filter: blur(10px);     /* Para compatibilidad con navegadores Safari antiguos */
+  border: 1px solid rgba(255, 255, 255, 0.2); /* Un borde sutil que define la forma */
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);  /* Una sombra más suave para dar profundidad */
+  
+  /* --- Propiedades que ya tenías y se mantienen --- */
   padding: 40px;
-  border-radius: 10px; /* Bordes redondeados */
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 10px;
   width: 100%;
-  max-width: 400px; /* Ancho máximo para que no se estire demasiado en pantallas grandes */
-  text-align: center; /* Centra el texto dentro de la caja */
+  max-width: 400px;
+  text-align: center;
 }
 
 /* Estilo para los títulos (h1) */
 .auth-box h1 {
   font-size: 28px;
   margin-bottom: 25px;
-  color: #1a202c;
+  color: #f0eaea;
 }
 
 /* Estilo para los campos de texto (email, password) */
@@ -44,33 +54,83 @@
   padding: 12px;
   border: none;
   border-radius: 6px;
-  background-color: #3182ce; /* El azul que usabas */
+  background-color: #c5a55b; /* El azul que usabas */
   color: white;
   font-size: 18px;
   font-weight: bold;
   cursor: pointer; /* Cambia el cursor a una manita al pasar por encima */
   transition: background-color 0.2s; /* Transición suave para el hover */
+  
 }
 
 /* Efecto al pasar el ratón por encima del botón */
 .auth-button:hover {
-  background-color: #2b6cb0; /* Un azul un poco más oscuro */
+  background-color: #292828; /* Un azul un poco más oscuro */
 }
 
 /* Contenedor para el enlace de "No tienes cuenta? Regístrate" */
 .auth-link-container {
   margin-top: 20px;
   font-size: 14px;
-  color: #4a5568;
+  color: #f9f9fa;
 }
 
 /* Estilo para el enlace en sí */
 .auth-link {
-  color: #3182ce;
+  color: #b4973f;
   font-weight: bold;
   text-decoration: none; /* Quita el subrayado feo */
 }
 
 .auth-link:hover {
   text-decoration: underline; /* Lo subraya solo al pasar el ratón */
+}
+
+@media (max-width: 768px) {
+  .auth-box {
+    /* Hacemos que la caja no sea tan ancha y deje algo de espacio */
+    max-width: 90%;
+    
+    /* Reducimos un poco el espaciado interior */
+    padding: 30px;
+  }
+
+  .auth-box h1 {
+    /* Hacemos el título un poco más pequeño */
+    font-size: 24px;
+  }
+}
+
+
+/* --- Para Celulares (y pantallas muy pequeñas) --- */
+/* Estas reglas se aplican cuando el ancho de la pantalla es de 480px o menos */
+@media (max-width: 480px) {
+  .auth-container {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('../assets/logo_mobile.png');
+  }
+
+  .auth-box {
+    /* Reducimos aún más el espaciado para que quepa todo */
+    padding: 25px 20px;
+    
+    /* Un truco visual: en móviles, quitar la sombra puede hacer que se vea más limpio */
+    box-shadow: none;
+  }
+
+  .auth-box h1 {
+    /* Reducimos más el título */
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .auth-button {
+    /* Hacemos el botón un poco menos alto */
+    padding: 10px;
+    font-size: 16px;
+  }
+
+  .auth-link-container {
+    /* Reducimos un poco el texto de abajo */
+    font-size: 13px;
+  }
 }

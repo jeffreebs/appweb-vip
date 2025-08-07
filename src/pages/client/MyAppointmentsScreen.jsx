@@ -7,6 +7,7 @@ import { db } from '../../firebaseConfig';
 import { useAuth } from '../../context/AuthContext';
 import { Rating } from 'react-simple-star-rating';
 import './MyAppointmentsScreen.css';
+import fondoBarberia from '../../assets/logo_mejorado.png';
 
 const RatingComponent = ({ appointment }) => {
     const [rating, setRating] = useState(appointment.rating || 0);
@@ -107,63 +108,64 @@ const MyAppointmentsScreen = () => {
     const appointmentsToShow = activeTab === 'upcoming' ? upcomingAppointments : pastAppointments;
 
     return (
-        <div className="my-appointments-container">
-            <h1>Mis Citas</h1>
-            <Link to="/" className="back-link">Volver al Inicio</Link>
+    <div className="my-appointments-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+      <div className="my-appointments-container">
+        
+        <header className="my-appointments-header">
+          <h1>Mis Citas</h1>
+          <Link to="/" className="back-link">Volver al Inicio</Link>
+        </header>
 
-            <div className="tabs">
-                <button className={`tab-button ${activeTab === 'upcoming' ? 'active' : ''}`} onClick={() => setActiveTab('upcoming')}>Próximas ({upcomingAppointments.length})</button>
-                <button className={`tab-button ${activeTab === 'past' ? 'active' : ''}`} onClick={() => setActiveTab('past')}>Historial ({pastAppointments.length})</button>
-            </div>
-
-            <div className="appointments-list">
-                {loading ? <p>Cargando tus citas...</p> : appointmentsToShow.length > 0 ? (
-                    appointmentsToShow.map(app => {
-                        const appointmentDate = app.date.toDate();
-                        const service = services.find(s => s.id === app.serviceId);
-                        const duration = service ? service.duration : 60; // Duración por defecto de 60 min si no se encuentra
-                        
-                        const appointmentEndDate = new Date(appointmentDate.getTime() + duration * 60 * 1000);
-                        const twentyFourHoursAfter = new Date(appointmentEndDate.getTime() + 24 * 60 * 60 * 1000);
-                        
-                        const twoHoursBefore = new Date(appointmentDate.getTime() - 2 * 60 * 60 * 1000);
-                        const canEdit = now < twoHoursBefore;
-                        const canRate = now > appointmentEndDate && now < twentyFourHoursAfter;
-
-                        return (
-                            <div key={app.id} className="appointment-item-client">
-                                <div className="appointment-details">
-                                    <p className="service-name-client">{app.serviceName}</p>
-                                    <p><strong>Fecha:</strong> {appointmentDate.toLocaleDateString('es-ES', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                                    <p><strong>Hora:</strong> {appointmentDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</p>
-                                </div>
-                                {activeTab === 'upcoming' && (
-                                    <div className="appointment-actions-client">
-                                        {canEdit ? (
-                                            <button onClick={() => handleEdit(app.id)} className="edit-btn-client">Editar</button>
-                                        ) : (
-                                            <button className="edit-btn-client disabled" disabled title="No se puede editar una cita con menos de 2 horas de antelación.">Editar</button>
-                                        )}
-                                        <button onClick={() => handleCancelAppointment(app.id)} className="cancel-btn-client">Cancelar</button>
-                                    </div>
-                                )}
-                                {activeTab === 'past' && canRate && !app.rating && (
-                                    <RatingComponent appointment={app} />
-                                )}
-                                {activeTab === 'past' && app.rating && (
-                                    <div className="rating-display">
-                                        <p>Tu calificación:</p>
-                                        <Rating initialValue={app.rating} readonly size={20} fillColor='gold' emptyColor='gray'/>
-                                        {app.comment && <p className="comment-display">"{app.comment}"</p>}
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })
-                ) : <p>No tienes citas en esta sección.</p>}
-            </div>
+        <div className="tabs">
+          <button className={`tab-button ${activeTab === 'upcoming' ? 'active' : ''}`} onClick={() => setActiveTab('upcoming')}>Próximas ({upcomingAppointments.length})</button>
+          <button className={`tab-button ${activeTab === 'past' ? 'active' : ''}`} onClick={() => setActiveTab('past')}>Historial ({pastAppointments.length})</button>
         </div>
-    );
+
+        <main className="appointments-list">
+          {loading ? <p>Cargando tus citas...</p> : appointmentsToShow.length > 0 ? (
+            appointmentsToShow.map(app => {
+              const appointmentDate = app.date.toDate();
+              const service = services.find(s => s.id === app.serviceId);
+              const duration = service ? service.duration : 60;
+              const appointmentEndDate = new Date(appointmentDate.getTime() + duration * 60 * 1000);
+              const twentyFourHoursAfter = new Date(appointmentEndDate.getTime() + 24 * 60 * 60 * 1000);
+              const twoHoursBefore = new Date(appointmentDate.getTime() - 2 * 60 * 60 * 1000);
+              const canEdit = now < twoHoursBefore;
+              const canRate = now > appointmentEndDate && now < twentyFourHoursAfter;
+
+              return (
+                <div key={app.id} className="appointment-card">
+                  <div className="appointment-details">
+                    <h3>{app.serviceName}</h3>
+                    <p><strong>Fecha:</strong> {appointmentDate.toLocaleDateString('es-ES', { weekday: 'long', day: 'numeric', month: 'long' })}</p>
+                    <p><strong>Hora:</strong> {appointmentDate.toLocaleTimeString('es-ES', { hour: '2-digit', minute: '2-digit' })}</p>
+                  </div>
+                  <div className="appointment-actions">
+                    {activeTab === 'upcoming' && (
+                      <>
+                        <button onClick={() => handleEdit(app.id)} className="edit-btn" disabled={!canEdit} title={!canEdit ? "No se puede editar con menos de 2 horas de antelación." : ""}>Editar</button>
+                        <button onClick={() => handleCancelAppointment(app.id)} className="cancel-btn">Cancelar</button>
+                      </>
+                    )}
+                    {activeTab === 'past' && canRate && !app.rating && (
+                      <RatingComponent appointment={app} />
+                    )}
+                    {activeTab === 'past' && app.rating && (
+                      <div className="rating-display">
+                        <p>Tu calificación:</p>
+                        <Rating initialValue={app.rating} readonly size={20} fillColor='gold' emptyColor='gray'/>
+                        {app.comment && <p className="comment-display">"{app.comment}"</p>}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              );
+            })
+          ) : <p className="no-appointments-message">No tienes citas en esta sección.</p>}
+        </main>
+      </div>
+    </div>
+  );
 };
 
 export default MyAppointmentsScreen;

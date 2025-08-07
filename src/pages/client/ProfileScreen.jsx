@@ -7,6 +7,7 @@ import { db, auth } from '../../firebaseConfig';
 import { useAuth } from '../../context/AuthContext';
 import { updateProfile } from 'firebase/auth';
 import './ProfileScreen.css';
+import fondoBarberia from '../../assets/logo_mejorado.png';
 
 const RankCard = ({ rankName, rankDescription }) => {
     const rankClass = rankName.toLowerCase().replace(/ /g, '-');
@@ -101,47 +102,51 @@ const ProfileScreen = () => {
     }
 
     return (
-        <div className="profile-container">
+    <div className="profile-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+      <div className="profile-container">
+        <header className="profile-header">
             <h1>Mi Perfil</h1>
             <Link to="/" className="back-link">Volver al Inicio</Link>
+        </header>
 
-            <form onSubmit={handleSubmit} className="profile-form">
-                <div className="form-section">
-                    <h3>Información Personal</h3>
-                    <div className="form-group-profile">
-                        <label htmlFor="fullName">Nombre Completo</label>
-                        <input type="text" id="fullName" name="fullName" value={profileData.fullName} onChange={handleChange} required />
-                    </div>
-                    <div className="form-group-profile">
-                        <label htmlFor="email">Correo Electrónico (no editable)</label>
-                        <input type="email" id="email" name="email" value={currentUser.email} disabled />
-                    </div>
-                    <div className="form-group-profile">
-                        <label htmlFor="phone">Número de Teléfono</label>
-                        <input type="tel" id="phone" name="phone" value={profileData.phone} onChange={handleChange} placeholder="Ej: 8888-8888" />
-                    </div>
-                    <div className="form-group-profile">
-                        <label htmlFor="gender">Género</label>
-                        <select id="gender" name="gender" value={profileData.gender} onChange={handleChange}>
-                            <option value="">Prefiero no decirlo</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="femenino">Femenino</option>
-                            <option value="otro">Otro</option>
-                        </select>
-                    </div>
+        <form onSubmit={handleSubmit} className="profile-form">
+            <div className="form-section">
+                <h3>Información Personal</h3>
+                <div className="form-group-profile">
+                    <label htmlFor="fullName">Nombre Completo</label>
+                    <input type="text" id="fullName" name="fullName" value={profileData.fullName} onChange={handleChange} required />
                 </div>
+                <div className="form-group-profile">
+                    <label htmlFor="email">Correo Electrónico</label>
+                    <input type="email" id="email" name="email" value={currentUser.email} disabled />
+                </div>
+                <div className="form-group-profile">
+                    <label htmlFor="phone">Número de Teléfono</label>
+                    <input type="tel" id="phone" name="phone" value={profileData.phone} onChange={handleChange} placeholder="Ej: 8888-8888" />
+                </div>
+                <div className="form-group-profile">
+                    <label htmlFor="gender">Género</label>
+                    <select id="gender" name="gender" value={profileData.gender} onChange={handleChange}>
+                        <option value="">Prefiero no decirlo</option>
+                        <option value="masculino">Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">Otro</option>
+                    </select>
+                </div>
+            </div>
 
-                <div className="form-section">
-                    <h3>Tu Rango en Vipcuts</h3>
-                    <RankCard rankName={rank.name} rankDescription={rank.description} />
-                </div>
-                
-                <button type="submit" className="save-btn-profile" disabled={isSaving}>
-                    {isSaving ? 'Guardando...' : 'Guardar Cambios'}
-                </button>
-            </form>
-        </div>
-    );
+            <div className="form-section">
+                <h3>Tu Rango en Vipcuts</h3>
+                <RankCard rankName={rank.name} rankDescription={rank.description} />
+            </div>
+            
+            <button type="submit" className="save-btn-profile" disabled={isSaving}>
+                {isSaving ? 'Guardando...' : 'Guardar Cambios'}
+            </button>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default ProfileScreen;

@@ -7,6 +7,7 @@ import { db } from '../../firebaseConfig';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import './AppointmentsManagement.css';
+import fondoBarberia from '../../assets/logo_mejorado.png';
 
 const AppointmentsManagementScreen = () => {
   const [appointments, setAppointments] = useState([]);
@@ -83,50 +84,56 @@ const AppointmentsManagementScreen = () => {
 
 
   return (
-    <div className="appointments-container">
-      <div className="management-header"> {/* Usamos el mismo estilo de header */}
-        <h1>Gestión de Citas</h1>
-        {/* ¡NUEVO BOTÓN PARA AGENDAR! */}
-        <Link to="/admin/appointment/add" className="add-button">Agendar Nueva Cita</Link>
-      </div>
-      <Link to="/" className="back-button">Volver al Panel</Link>
+    <div className="appointments-management-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+      <div className="appointments-management-container">
+        
+        <header className="appointments-header">
+          <div className="am-title">
+            <h1>Gestión de Citas</h1>
+          </div>
+          <div className="am-actions">
+            <Link to="/" className="am-button secondary">Volver al Panel</Link>
+            <Link to="/admin/appointment/add" className="am-button primary">Agendar Nueva Cita</Link>
+          </div>
+        </header>
 
-      <div className="content-layout">
-        <div className="filters-column">
-          <h3>Selecciona una fecha</h3>
-          <Calendar onChange={setSelectedDate} value={selectedDate} className="custom-calendar" />
-          <h3 style={{marginTop: '20px'}}>Filtrar por Barbero</h3>
-          <select value={selectedBarber} onChange={(e) => setSelectedBarber(e.target.value)} className="barber-filter">
-            <option value="todos">Todos los barberos</option>
-            {barbers.map(barber => (
-              <option key={barber.id} value={barber.id}>{barber.name}</option>
-            ))}
-          </select>
-        </div>
+        <main className="content-layout">
+          <aside className="filters-column">
+            <Calendar onChange={setSelectedDate} value={selectedDate} className="custom-calendar" />
+            <select value={selectedBarber} onChange={(e) => setSelectedBarber(e.target.value)} className="barber-filter">
+              <option value="todos">Todos los barberos</option>
+              {barbers.map(barber => (
+                <option key={barber.id} value={barber.id}>{barber.name}</option>
+              ))}
+            </select>
+          </aside>
 
-        <div className="appointments-list-column">
-          <h2>Citas para el {selectedDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</h2>
-          {loading ? (
-            <p>Cargando citas...</p>
-          ) : appointments.length > 0 ? (
-            appointments.map(app => (
-              <div key={app.id} className="appointment-card">
-              <div> {/* Contenedor para la info */}
-                <p><strong>Cliente:</strong> {app.clientName}</p>
-                <p><strong>Servicio:</strong> {app.serviceName}</p>
-                <p><strong>Hora:</strong> {app.date.toDate().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</p>
-                <p><strong>Barbero:</strong> {barbers.find(b => b.id === app.barberId)?.name || 'No asignado'}</p>
+          <section className="appointments-list-column">
+            <h2>Citas para el {selectedDate.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' })}</h2>
+            {loading ? (
+              <p>Cargando citas...</p>
+            ) : appointments.length > 0 ? (
+              appointments.map(app => (
+                <div key={app.id} className="appointment-card">
+                  <div>
+                    <p><strong>Cliente:</strong> {app.clientName}</p>
+                    <p><strong>Servicio:</strong> {app.serviceName}</p>
+                    <p><strong>Hora:</strong> {app.date.toDate().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                    <p><strong>Barbero:</strong> {barbers.find(b => b.id === app.barberId)?.name || 'No asignado'}</p>
+                  </div>
+                  <div className="appointment-actions">
+                    <button onClick={() => handleEdit(app.id)} className="edit-button">Editar</button>
+                    <button onClick={() => handleDelete(app.id)} className="delete-button">Eliminar</button>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="appointment-card">
+                <p>No hay citas agendadas para este día y/o barbero.</p>
               </div>
-              <div className="appointment-actions"> {/* Contenedor para los botones */}
-                <button onClick={() => handleEdit(app.id)} className="edit-button">Editar</button>
-                <button onClick={() => handleDelete(app.id)} className="delete-button">Eliminar</button>
-              </div>
-            </div>
-            ))
-          ) : (
-            <p>No hay citas agendadas para este día y/o barbero.</p>
-          )}
-        </div>
+            )}
+          </section>
+        </main>
       </div>
     </div>
   );

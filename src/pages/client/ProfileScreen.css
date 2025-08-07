@@ -1,124 +1,107 @@
-/* src/pages/client/ProfileScreen.css */
+/* src/pages/client/ProfileScreen.css (VERSIÓN MEJORADA Y RESPONSIVE) */
+
+.profile-background {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
 
 .profile-container {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
+  width: 100%;
+  max-width: 700px;
+  color: white;
 }
 
-.profile-container h1 {
-    text-align: center;
-    margin-bottom: 10px;
+.profile-header {
+  text-align: center;
+  margin-bottom: 20px;
 }
+.profile-header h1 { margin: 0; font-size: 2em; }
+.profile-header .back-link { color: #a0aec0; text-decoration: none; font-size: 0.9em; }
 
 .profile-form {
-    background-color: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  padding: 30px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .form-section {
-    margin-bottom: 30px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e2e8f0;
+  margin-bottom: 30px;
 }
-.form-section:last-of-type {
-    border-bottom: none;
-    padding-bottom: 0;
-}
-
-.form-group-profile {
-    margin-bottom: 20px;
+.form-section h3 {
+  color: #e2c167;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
 }
 
+.form-group-profile { margin-bottom: 20px; }
 .form-group-profile label {
-    display: block;
-    font-weight: 600;
-    margin-bottom: 8px;
-    color: #4a5568;
+  display: block;
+  font-weight: 500;
+  margin-bottom: 8px;
+  color: #d1d5db;
 }
 
 .form-group-profile input,
 .form-group-profile select {
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #cbd5e0;
-    border-radius: 6px;
-    background-color: #f7fafc;
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  color: white;
+  box-sizing: border-box;
 }
-
+.form-group-profile input:focus,
+.form-group-profile select:focus {
+  outline: none;
+  border-color: #e2c167;
+}
 .form-group-profile input:disabled {
-    background-color: #e2e8f0;
-    cursor: not-allowed;
-    color: #718096;
+  background-color: rgba(0, 0, 0, 0.2);
+  cursor: not-allowed;
+  color: #718096;
 }
+.form-group-profile select option { background: #2d3748; }
 
 .save-btn-profile {
-    display: block;
-    width: 100%;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    color: white;
-    background-color: #3182ce;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
+  display: block; width: 100%; padding: 15px; font-size: 18px;
+  font-weight: bold; color: #1a202c; background-color: #b4973f;
+  border: none; border-radius: 8px; cursor: pointer; transition: all 0.2s ease;
 }
+.save-btn-profile:hover { background-color: #d4b868; }
+.save-btn-profile:disabled { background-color: #4a5568; color: #a0aec0; cursor: not-allowed; }
 
-.save-btn-profile:hover {
-    background-color: #2b6cb0;
-}
-.save-btn-profile:disabled {
-    background-color: #a0aec0;
-    cursor: not-allowed;
-}
-
-.profile-container .back-link {
-    display: block;
-    text-align: center;
-    margin-bottom: 30px;
-    color: #3182ce;
-    text-decoration: none;
-    font-weight: 500;
-}
-
+/* --- Estilos Mejorados para RankCard --- */
 .rank-card {
-    padding: 20px;
-    border-radius: 8px;
-    color: white;
-    margin-top: 10px;
-    border-left: 5px solid;
+  padding: 20px;
+  border-radius: 10px;
+  color: white;
+  border-left: 5px solid;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
 }
+.rank-card h4 { margin: 0 0 10px 0; font-size: 1.3em; }
+.rank-card p { margin: 0; font-size: 0.9em; opacity: 0.9; }
 
-.rank-card h4 {
-    margin: 0 0 10px 0;
-    font-size: 1.2em;
-}
+.rank-novato { border-color: #718096; }
+.rank-fan-ocasional { border-color: #3182ce; }
+.rank-cliente-frecuente { border-color: #2c7a7b; }
+.rank-embajador-vipcuts { border-color: #e2c167; }
+.rank-embajador-vipcuts h4 { color: #e2c167; } /* Resalta el rango más alto */
 
-.rank-card p {
-    margin: 0;
-    font-size: 0.9em;
-    opacity: 0.9;
-}
-
-/* Colores específicos para cada rango */
-.rank-novato {
-    background-color: #718096; /* Gris */
-    border-color: #4a5568;
-}
-.rank-fan-ocasional {
-    background-color: #3182ce; /* Azul */
-    border-color: #2b6cb0;
-}
-.rank-cliente-frecuente {
-    background-color: #2c7a7b; /* Verde azulado */
-    border-color: #285e61;
-}
-.rank-embajador-vipcuts {
-    background-color: #b7791f; /* Dorado */
-    border-color: #975a16;
+/* Responsive */
+@media (max-width: 480px) {
+  .profile-background { padding: 20px 15px; }
+  .profile-form { padding: 20px; }
+  .profile-header h1 { font-size: 1.8em; }
 }

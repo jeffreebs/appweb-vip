@@ -6,6 +6,8 @@ import { collection, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import { useAuth } from '../../context/AuthContext';
 import './AddEditBarber.css';
+import fondoBarberia from '../../assets/logo_mejorado.png';
+
 
 const AddEditBarberScreen = () => {
     const [name, setName] = useState('');
@@ -78,30 +80,32 @@ const AddEditBarberScreen = () => {
     }
 
     return (
-        <div className="form-container">
-            <h1>{isEditMode ? 'Editar Perfil' : 'Añadir Nuevo Barbero'}</h1>
-            <form onSubmit={handleSave} className="barber-form">
-                <div className="form-group">
-                    <label htmlFor="name">Nombre</label>
-                    <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ej: Carlos Rivas" required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="specialty">Especialidad</label>
-                    <input id="specialty" type="text" value={specialty} onChange={(e) => setSpecialty(e.target.value)} placeholder="Ej: Cortes clásicos y barba" required />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="imageUrl">URL de la Imagen (Opcional)</label>
-                    <input id="imageUrl" type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://ejemplo.com/foto.jpg" />
-                </div>
-                <div className="form-actions">
-                    <Link to={userRole === 'barbero' ? '/' : '/admin/barbers'} className="cancel-button">
-                        {userRole === 'barbero' ? 'Volver al Panel' : 'Cancelar'}
-                    </Link>
-                    <button type="submit" className="save-button" disabled={loading}>
-                        {loading ? 'Guardando...' : (isEditMode ? 'Guardar Cambios' : 'Guardar Barbero')}
-                    </button>
-                </div>
-            </form>
+        <div className="form-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+            <div className="form-container">
+                <h1>{isEditMode ? 'Editar Perfil de Barbero' : 'Añadir Nuevo Barbero'}</h1>
+                <form onSubmit={handleSave} className="barber-form">
+                    <div className="form-group">
+                        <label htmlFor="name">Nombre</label>
+                        <input id="name" type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ej: Carlos Rivas" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="specialty">Especialidad</label>
+                        <input id="specialty" type="text" value={specialty} onChange={(e) => setSpecialty(e.target.value)} placeholder="Ej: Cortes clásicos y barba" required />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="imageUrl">URL de la Imagen (Opcional)</label>
+                        <input id="imageUrl" type="url" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} placeholder="https://ejemplo.com/foto.jpg" />
+                    </div>
+                    <div className="form-actions">
+                        <Link to={userRole === 'barbero' ? '/barber/home' : '/admin/barbers'} className="form-button secondary">
+                            Cancelar
+                        </Link>
+                        <button type="submit" className="form-button primary" disabled={loading}>
+                            {loading ? 'Guardando...' : (isEditMode ? 'Guardar Cambios' : 'Guardar Barbero')}
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     );
 };

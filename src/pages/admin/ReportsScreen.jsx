@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { collection, query, where, getDocs, orderBy, onSnapshot } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
 import './ReportsScreen.css';
+import fondoBarberia from '../../assets/logo_mejorado.png'
+
 
 const ReportsScreen = () => {
   // --- ESTADOS ---
@@ -92,61 +94,74 @@ const ReportsScreen = () => {
   };
 
   return (
-    <div className="reports-container">
-      <h1>Informes de Servicios</h1>
-      <Link to="/" className="back-button">Volver al Panel</Link>
+    <div className="reports-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+      <div className="reports-container">
+        <header className="reports-header">
+          <div className="rp-title">
+            <h1>Informes de Servicios</h1>
+          </div>
+          <div className="rp-actions">
+            <Link to="/" className="rp-button secondary">Volver al Panel</Link>
+          </div>
+        </header>
 
-      {/* --- PANEL DE FILTROS (sin cambios en el JSX) --- */}
-      <div className="filters-panel">
-        <div className="filter-group">
-          <label>Fecha de Inicio</label>
-          <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
-        </div>
-        <div className="filter-group">
-          <label>Fecha de Fin</label>
-          <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
-        </div>
-        <div className="filter-group">
-          <label>Barbero (opcional)</label>
-          <select value={selectedBarber} onChange={e => setSelectedBarber(e.target.value)}>
-            <option value="todos">Todos los barberos</option>
-            {barbers.map(barber => <option key={barber.id} value={barber.id}>{barber.name}</option>)}
-          </select>
-        </div>
-        <button onClick={handleGenerateReport} disabled={loading} className="generate-button">
-          {loading ? 'Generando...' : 'Generar Informe'}
-        </button>
-      </div>
+        <section className="filters-panel">
+          <div className="filter-group">
+            <label>Fecha de Inicio</label>
+            <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+          </div>
+          <div className="filter-group">
+            <label>Fecha de Fin</label>
+            <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+          </div>
+          <div className="filter-group">
+            <label>Barbero</label>
+            <select value={selectedBarber} onChange={e => setSelectedBarber(e.target.value)}>
+              <option value="todos">Todos los barberos</option>
+              {barbers.map(barber => <option key={barber.id} value={barber.id}>{barber.name}</option>)}
+            </select>
+          </div>
+          <button onClick={handleGenerateReport} disabled={loading} className="rp-button primary">
+            {loading ? 'Generando...' : 'Generar Informe'}
+          </button>
+        </section>
 
-      {/* --- PANEL DE RESULTADOS (con la nueva estructura) --- */}
-      <div className="report-results">
-        <h2>Resultados</h2>
-        {loading && <p>Cargando...</p>}
-        {reportData && (
-          <>
-            <div className="report-summary">
-              <h3>Resumen General</h3>
-              <p><strong>Total de Servicios Realizados:</strong> {reportData.totalServices}</p>
-              <p><strong>Ingresos Totales:</strong> ₡{reportData.totalRevenue.toLocaleString('es-CR')}</p>
-            </div>
-            
-            <div className="report-details">
-              <h3>Desglose por Servicio</h3>
-              {Object.keys(reportData.details).length > 0 ? (
-                <ul>
-                  {Object.entries(reportData.details).map(([serviceName, data]) => (
-                    <li key={serviceName}>
-                      <strong>{serviceName}:</strong> {data.count} realizado(s) - <span>Ingresos: ₡{data.revenue.toLocaleString('es-CR')}</span>
-                    </li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No se encontraron citas que coincidan con los filtros.</p>
-              )}
-            </div>
-          </>
-        )}
-        {!reportData && !loading && <p>Selecciona los filtros y haz clic en "Generar Informe".</p>}
+        <section className="report-results">
+          <h2>Resultados</h2>
+          {loading && <p>Cargando...</p>}
+          {reportData ? (
+            <>
+              <div className="report-summary">
+                <div className="summary-item">
+                  <span className="summary-value">{reportData.totalServices}</span>
+                  <span className="summary-label">Servicios Realizados</span>
+                </div>
+                <div className="summary-item">
+                  <span className="summary-value">₡{reportData.totalRevenue.toLocaleString('es-CR')}</span>
+                  <span className="summary-label">Ingresos Totales</span>
+                </div>
+              </div>
+              
+              <div className="report-details">
+                <h3>Desglose por Servicio</h3>
+                {Object.keys(reportData.details).length > 0 ? (
+                  <ul className="details-list">
+                    {Object.entries(reportData.details).map(([serviceName, data]) => (
+                      <li key={serviceName}>
+                        <span className="detail-name">{serviceName} ({data.count})</span>
+                        <span className="detail-revenue">₡{data.revenue.toLocaleString('es-CR')}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="no-results-text">No se encontraron citas que coincidan con los filtros.</p>
+                )}
+              </div>
+            </>
+          ) : (
+            !loading && <p className="no-results-text">Selecciona los filtros y haz clic en "Generar Informe".</p>
+          )}
+        </section>
       </div>
     </div>
   );

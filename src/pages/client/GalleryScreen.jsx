@@ -3,16 +3,19 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './GalleryScreen.css'; // Crearemos este archivo de estilos
+import fondoBarberia from '../../assets/logo_mejorado.png';
+
+
 
 // --- DATOS DE EJEMPLO ---
 // Más adelante, estos datos podrían venir de Firestore
 const galleryImages = [
-  { id: 1, url: 'https://images.unsplash.com/photo-1599338446212-d391f9b3b04c?q=80&w=1887', description: 'Fade clásico con textura' },
-  { id: 2, url: 'https://images.unsplash.com/photo-1621605815971-80a42d314278?q=80&w=1887', description: 'Arreglo de barba con navaja' },
-  { id: 3, url: 'https://images.unsplash.com/photo-1622288432453-24161e4c718c?q=80&w=1887', description: 'Corte moderno texturizado' },
-  { id: 4, url: 'https://images.unsplash.com/photo-1567894340345-a61621959324?q=80&w=1887', description: 'Diseño de líneas precisas' },
-  { id: 5, url: 'https://plus.unsplash.com/premium_photo-1661386221469-236b2b730594?q=80&w=1887', description: 'Coloración y estilo' },
-  { id: 6, url: 'https://images.unsplash.com/photo-1623366302587-b35941de3a23?q=80&w=1887', description: 'Mantenimiento de barba larga' },
+  { id: 1, url: 'https://i.pinimg.com/1200x/d2/77/49/d277499f0a36505e937306c6d47f3a61.jpg', description: 'Fade clásico con textura' },
+  { id: 2, url: 'https://i.pinimg.com/736x/33/1d/3e/331d3e73f1a5be948e86ff506b359af8.jpg', description: 'Arreglo de barba con navaja' },
+  { id: 3, url: 'https://i.pinimg.com/736x/3b/e4/a2/3be4a296fc5e0deadd9cc4d995ccb4ee.jpg', description: 'Corte moderno texturizado' },
+  { id: 4, url: 'https://i.pinimg.com/1200x/09/e3/05/09e3051184ebb30f4fbd13456d44e984.jpg', description: 'Diseño de líneas precisas' },
+  { id: 5, url: 'https://i.pinimg.com/1200x/7e/49/88/7e49888af4dd83ff04453e532173e012.jpg', description: 'Coloración y estilo' },
+  { id: 6, url: 'https://i.pinimg.com/736x/72/45/18/724518aa27d1aa8b8f052afcdd73c9e6.jpg', description: 'Mantenimiento de barba larga' },
 ];
 
 const trends = [
@@ -23,35 +26,47 @@ const trends = [
 
 const GalleryScreen = () => {
     return (
-        <div className="gallery-container">
-            <h1>Galería y Tendencias</h1>
-            <Link to="/" className="back-link">Volver al Inicio</Link>
+        <div className="gallery-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+            <div className="gallery-container">
+                <header className="gallery-header">
+                    <h1>Galería y Tendencias</h1>
+                    <Link to="/" className="back-link">Volver al Inicio</Link>
+                </header>
 
-            <section className="gallery-section">
-                <h2>Nuestros Trabajos</h2>
-                <div className="image-grid">
-                    {galleryImages.map(image => (
-                        <div key={image.id} className="image-card">
-                            <img src={image.url} alt={image.description} />
-                            <div className="image-overlay">
-                                <p>{image.description}</p>
-                            </div>
+                <main>
+                    <section className="gallery-section">
+                        <h2>Nuestros Trabajos</h2>
+                        <div className="image-grid">
+                            {galleryImages.map(image => (
+                                <div key={image.id} className="book-card"> {/* Renombramos la clase principal */}
+                                    {/* El texto que se revela al abrir */}
+                                    <p className="book-content">{image.description}</p>
+                                    
+                                    {/* La portada del libro, que es la imagen */}
+                                    <div className="cover">
+                                        <img src={image.url} alt={image.description} />
+                                        <div className="cover-overlay">
+                                            <p>{image.description}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </section>
+                    </section>
 
-            <section className="trends-section">
-                <h2>Tendencias Actuales</h2>
-                <div className="trends-list">
-                    {trends.map(trend => (
-                        <div key={trend.id} className="trend-card">
-                            <h3>{trend.title}</h3>
-                            <p>{trend.description}</p>
+                    <section className="trends-section">
+                        <h2>Tendencias Actuales</h2>
+                        <div className="trends-list">
+                            {trends.map(trend => (
+                                <div key={trend.id} className="trend-card">
+                                    <h3>{trend.title}</h3>
+                                    <p>{trend.description}</p>
+                                </div>
+                            ))}
                         </div>
-                    ))}
-                </div>
-            </section>
+                    </section>
+                </main>
+            </div>
         </div>
     );
 };

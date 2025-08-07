@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebaseConfig';
 import './Auth.css';
+import fondoBarberia from '../assets/logo_mejorado.png';
 
 const AuthScreen = () => {
   const [email, setEmail] = useState('');
@@ -32,7 +33,12 @@ const AuthScreen = () => {
 
   // El formulario se queda igual que antes
   return (
-    <div className="auth-container">
+    // ====================== ¡AQUÍ ESTÁ LA CORRECCIÓN! ======================
+    // Movemos el 'style' al 'div' principal que tiene la clase "auth-container".
+    <div 
+      className="auth-container" 
+    >
+      {/* Ahora todo el contenido, incluida la caja blanca, está DENTRO del div con fondo. */}
       <div className="auth-box">
         <h1>Iniciar Sesión</h1>
         <form onSubmit={handleLogin}>
@@ -58,8 +64,12 @@ const AuthScreen = () => {
           ¿No tienes una cuenta?{' '}
           <Link to="/register" className="auth-link">Regístrate aquí</Link>
         </div>
+        
+        {/* Y MUY IMPORTANTE: Borramos el div extra que estaba aquí antes. */}
+
       </div>
     </div>
+    // =======================================================================
   );
 };
 

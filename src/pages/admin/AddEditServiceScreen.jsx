@@ -4,7 +4,10 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
 import { collection, doc, getDoc, setDoc, addDoc } from 'firebase/firestore';
 import { db } from '../../firebaseConfig';
-import './AddEditBarber.css'; // Reutilizamos los estilos del formulario de barberos
+import './AddEditService.css'; 
+import fondoBarberia from '../../assets/logo_mejorado.png';
+
+
 
 const AddEditServiceScreen = () => {
   const [name, setName] = useState('');
@@ -66,41 +69,43 @@ const AddEditServiceScreen = () => {
   };
 
   return (
-    <div className="form-container">
-      <h1>{isEditMode ? 'Editar Servicio' : 'Añadir Nuevo Servicio'}</h1>
-      <form onSubmit={handleSave} className="barber-form">
-        <div className="form-group">
-          <label>Nombre del Servicio</label>
-          <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
-        </div>
-        <div className="form-group">
-          <label>Categoría (Ej: Sencillo, VIP, Color)</label>
-          <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required />
-        </div>
-        <div className="form-group">
-          <label>Precio ($)</label>
-          <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
-        </div>
-        <div className="form-group">
-          <label>Duración (minutos)</label>
-          <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} required />
-        </div>
-        <div className="form-group">
-          <label>Descripción (Opcional)</label>
-          <textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            rows="4"
-            placeholder="Detalla qué incluye el servicio..."
-          ></textarea>
-        </div>
-        <div className="form-actions">
-          <Link to="/admin/services" className="cancel-button">Cancelar</Link>
-          <button type="submit" className="save-button" disabled={loading}>
-            {loading ? 'Guardando...' : 'Guardar Servicio'}
-          </button>
-        </div>
-      </form>
+    <div className="form-background" style={{ backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(${fondoBarberia})` }}>
+      <div className="form-container">
+        <h1>{isEditMode ? 'Editar Servicio' : 'Añadir Nuevo Servicio'}</h1>
+        <form onSubmit={handleSave} className="service-form">
+          <div className="form-group">
+            <label>Nombre del Servicio</label>
+            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Categoría (Ej: Sencillo, VIP, Color)</label>
+            <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Precio (₡)</label>
+            <input type="number" value={price} onChange={(e) => setPrice(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Duración (minutos)</label>
+            <input type="number" value={duration} onChange={(e) => setDuration(e.target.value)} required />
+          </div>
+          <div className="form-group">
+            <label>Descripción (Opcional)</label>
+            <textarea
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+              rows="4"
+              placeholder="Detalla qué incluye el servicio..."
+            ></textarea>
+          </div>
+          <div className="form-actions">
+            <Link to="/admin/services" className="form-button secondary">Cancelar</Link>
+            <button type="submit" className="form-button primary" disabled={loading}>
+              {loading ? 'Guardando...' : 'Guardar Servicio'}
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };

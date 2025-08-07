@@ -1,86 +1,165 @@
-/* src/pages/client/GalleryScreen.css */
+/* src/pages/client/GalleryScreen.css (VERSIÓN MEJORADA Y RESPONSIVE) */
+
+.gallery-background {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* Efecto parallax sutil */
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
 
 .gallery-container {
-    max-width: 1200px;
-    margin: 40px auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: white;
 }
 
-.gallery-container h1, .gallery-container h2 {
-    text-align: center;
-    color: #2d3748;
+.gallery-header {
+  text-align: center;
+  margin-bottom: 40px;
 }
-.gallery-container h1 { margin-bottom: 10px; }
-.gallery-container h2 { margin-bottom: 30px; }
+.gallery-header h1 {
+  font-size: 2.5em;
+  margin-bottom: 10px;
+  color: #e2c167; /* Dorado */
+}
+.gallery-header .back-link {
+  color: #a0aec0;
+  text-decoration: none;
+}
 
-.gallery-container .back-link {
-    display: block;
-    text-align: center;
-    margin-bottom: 40px;
-    color: #3182ce;
-    text-decoration: none;
-    font-weight: 500;
+.gallery-section, .trends-section {
+  margin-bottom: 60px;
+}
+
+.gallery-container h2 {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 15px;
 }
 
 /* --- Estilos de la Galería de Imágenes --- */
 .image-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  gap: 20px;
 }
 
-.image-card {
-    position: relative;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    height: 300px; /* Altura fija para las tarjetas */
-}
 
-.image-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Asegura que la imagen cubra la tarjeta sin deformarse */
-    transition: transform 0.3s ease;
-}
 
 .image-card:hover img {
-    transform: scale(1.05); /* Efecto de zoom al pasar el ratón */
+  transform: scale(1.1);
 }
 
-.image-overlay {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-    padding: 40px 20px 20px;
-    color: white;
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px; /* Un poco más de espacio */
 }
 
-.image-overlay p {
-    margin: 0;
-    font-weight: 600;
+/* El contenedor principal de la tarjeta, el "libro" */
+.book-card {
+  position: relative;
+  border-radius: 10px;
+  width: 100%; /* Ocupa el espacio de la rejilla */
+  height: 480px;
+  background-color: rgba(255, 255, 255, 0.05); /* Fondo sutil para el interior */
+  box-shadow: 1px 1px 12px rgba(0, 0, 0, 0.5);
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* El texto interior que se revela */
+.book-content {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #e2c167; /* Dorado */
+  padding: 20px;
+  text-align: center;
+}
+
+/* La "portada" del libro */
+.cover {
+  top: 0;
+  left: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.6s ease; /* Transición más suave */
+  transform-origin: 0; /* Gira desde el borde izquierdo */
+  overflow: hidden; /* Para que la imagen no se salga */
+}
+
+/* La imagen dentro de la portada */
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s ease; /* Transición para el zoom */
+}
+
+/* El overlay con el texto en la portada */
+.cover-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+  padding: 20px;
+  color: white;
+}
+.cover-overlay p {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* --- EFECTO HOVER --- */
+/* Al pasar el ratón, la portada gira */
+.book-card:hover .cover {
+  transform: rotateY(-110deg);
+}
+
+/* Al pasar el ratón, la imagen de la portada hace un pequeño zoom */
+.book-card:hover .cover img {
+  transform: scale(1.2);
 }
 
 /* --- Estilos de la Sección de Tendencias --- */
-.trends-section {
-    margin-top: 60px;
-}
-
 .trends-list {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .trend-card {
-    background-color: #fff;
-    padding: 25px;
-    border-radius: 12px;
-    border-left: 5px solid #3182ce;
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  padding: 25px;
+  border-radius: 12px;
+  border-left: 4px solid #e2c167;
 }
 
 .trend-card h3 {
-    margin-top: 0;
+  margin-top: 0;
+  color: #e2c167;
+}
+.trend-card p {
+  color: #d1d5db;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .gallery-header h1 { font-size: 2em; }
+  .gallery-container h2 { font-size: 1.8em; }
+  .image-grid { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+  .image-card { height: 300px; }
 }

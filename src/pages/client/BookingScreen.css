@@ -1,133 +1,128 @@
-/* src/pages/client/BookingScreen.css */
+/* src/pages/client/BookingScreen.css (VERSIÓN MEJORADA Y RESPONSIVE) */
 
-.booking-container {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-}
-
-/* --- Barra de Pasos --- */
-.step-indicator {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 40px;
-  position: relative;
-}
-.step-item {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex: 1;
-}
-.step-circle {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background-color: #e2e8f0;
-  color: #a0aec0;
+.booking-background {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
   display: flex;
   justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.booking-container {
+  width: 100%;
+  max-width: 900px;
+  color: white;
+  background: rgba(20, 20, 20, 0.85);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+.booking-header {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  font-weight: bold;
-  font-size: 1.2em;
-  border: 3px solid #e2e8f0;
+  margin-bottom: 25px;
+}
+.booking-header h1 { margin: 0; font-size: 2em; }
+.back-link { color: #a0aec0; text-decoration: none; }
+
+.step-indicator {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.step-item { display: flex; align-items: center; gap: 10px; color: #718096; }
+.step-circle {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: #4a5568; color: #a0aec0;
+  display: flex; justify-content: center; align-items: center; font-weight: bold;
   transition: all 0.3s ease;
 }
-.step-label {
-  margin-top: 10px;
-  color: #a0aec0;
-  font-weight: 500;
-}
-.step-item.active .step-circle {
-  background-color: #3182ce;
-  border-color: #3182ce;
-  color: white;
-}
-.step-item.active .step-label {
-  color: #2d3748;
-}
+.step-item.active { color: white; }
+.step-item.active .step-circle { background-color: #b4973f; color: #1a202c; }
 
-/* --- Contenido de los Pasos --- */
-.step-content h2 {
-  margin-bottom: 20px;
-}
+.step-content h2 { color: #e2c167; margin-bottom: 20px; }
 
-/* --- Tarjetas de Selección (Servicios y Barberos) --- */
 .selection-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 15px;
+  gap: 20px;
 }
 .selection-card {
   padding: 20px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 .selection-card:hover {
-  border-color: #3182ce;
   transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.1);
 }
 .selection-card.selected {
-  border-color: #3182ce;
-  background-color: #ebf8ff;
-  box-shadow: 0 4px 10px rgba(49, 130, 206, 0.2);
+  border-color: #b4973f;
+  background: rgba(180, 151, 63, 0.2);
 }
-.selection-card .service-name { font-weight: bold; }
-.selection-card .service-details { font-size: 0.9em; color: #718096; margin-top: 5px; }
+.card-title { font-weight: bold; margin: 0 0 5px 0; }
+.card-details { font-size: 0.9em; color: #a0aec0; margin: 0; }
+.card-description {
+  font-size: 0.85em; color: #d1d5db; margin-top: 10px;
+  border-left: 2px solid #b4973f; padding-left: 10px;
+}
 
-
-/* --- Paso 3: Calendario y Horarios --- */
 .date-time-picker {
   display: flex;
   gap: 30px;
   flex-wrap: wrap;
 }
-.calendar-container {
-  flex: 1;
-  min-width: 300px;
+.calendar-container, .time-slots-container { flex: 1; min-width: 300px; }
+
+/* Reutilizamos el estilo del calendario del admin */
+.custom-calendar {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 12px;
+  font-family: inherit;
 }
-.time-slots-container {
-  flex: 1;
-  min-width: 250px;
-}
-.time-slots-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-}
+.custom-calendar .react-calendar__navigation button { color: white; }
+.custom-calendar .react-calendar__month-view__weekdays__weekday { color: #e2c167; }
+.custom-calendar .react-calendar__tile { color: white; border-radius: 6px; }
+.custom-calendar .react-calendar__tile:hover { background: rgba(255, 255, 255, 0.15); }
+.custom-calendar .react-calendar__tile--now { background: rgba(180, 151, 63, 0.3); }
+.custom-calendar .react-calendar__tile--active { background: #b4973f; color: black; }
+
+.time-slots-container h3 { margin-top: 0; }
+.time-slots-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
 .time-slot {
   padding: 10px;
-  border: 1px solid #cbd5e0;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 6px;
   text-align: center;
   cursor: pointer;
   transition: all 0.2s ease;
-}
-.time-slot:hover {
-  border-color: #3182ce;
-  color: #3182ce;
-}
-.time-slot.selected {
-  background-color: #3182ce;
   color: white;
-  border-color: #3182ce;
 }
+.time-slot:hover { background-color: rgba(255, 255, 255, 0.1); }
+.time-slot.selected { background-color: #b4973f; color: #1a202c; border-color: #b4973f; }
+.no-slots-message { color: #a0aec0; }
 
-/* --- Resumen y Confirmación --- */
 .confirmation-summary {
-  background-color: #f7fafc;
+  background-color: rgba(0, 0, 0, 0.2);
   padding: 20px;
   border-radius: 8px;
-  border: 1px solid #e2e8f0;
-  margin-top: 20px;
+  margin-top: 25px;
 }
-.confirmation-summary p { margin: 10px 0; }
-.confirmation-summary strong { color: #2d3748; }
+.confirmation-summary h3 { margin-top: 0; color: #e2c167; }
+.confirmation-summary p { margin: 8px 0; }
+.confirmation-summary strong { color: white; }
 
 .action-buttons {
   display: flex;
@@ -141,21 +136,19 @@
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
-.back-btn { background-color: #e2e8f0; color: #4a5568; }
-.confirm-btn { background-color: #38a169; color: white; }
-.confirm-btn:disabled { background-color: #a0aec0; cursor: not-allowed; }
+.nav-btn { background-color: #4a5568; color: white; }
+.nav-btn:hover { background-color: #718096; }
+.confirm-btn { background-color: #b4973f; color: #1a202c; }
+.confirm-btn:hover { background-color: #d4b868; }
+.confirm-btn:disabled { background-color: #718096; color: #a0aec0; cursor: not-allowed; }
 
-.selection-card .service-description {
-  font-size: 0.85em;
-  color: #4a5568;
-  margin-top: 10px;
-  border-left: 3px solid #cbd5e0;
-  padding-left: 10px;
-  line-height: 1.4;
+/* Responsive */
+@media (max-width: 768px) {
+  .date-time-picker { flex-direction: column; }
 }
-
-.selection-card.selected .service-description {
-  color: #2c5282; /* Un azul más oscuro para el texto seleccionado */
-  border-left-color: #3182ce;
+@media (max-width: 480px) {
+  .booking-header h1 { font-size: 1.5em; }
+  .step-indicator span { display: none; } /* Oculta el texto de los pasos en móviles */
 }

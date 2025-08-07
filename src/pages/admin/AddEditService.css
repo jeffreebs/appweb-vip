@@ -1,19 +1,16 @@
-/* src/pages/admin/AddEditBarber.css (VERSIÓN MEJORADA Y RESPONSIVE) */
+/* src/pages/admin/AddEditService.css (NUEVO ARCHIVO) */
 
-/* Contenedor principal que aplica el fondo */
 .form-background {
   min-height: 100vh;
   background-size: cover;
   background-position: center;
-  background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  align-items: center; /* Centra el formulario verticalmente */
+  align-items: center;
   padding: 20px;
   box-sizing: border-box;
 }
 
-/* Contenedor del formulario con efecto de vidrio */
 .form-container {
   width: 100%;
   max-width: 600px;
@@ -32,19 +29,19 @@
   font-size: 2em;
 }
 
-.barber-form .form-group {
+.service-form .form-group {
   margin-bottom: 25px;
 }
 
-.barber-form label {
+.service-form label {
   display: block;
   margin-bottom: 10px;
   font-weight: 600;
   color: #e2c167; /* Tono dorado para las etiquetas */
 }
 
-/* Estilo para los inputs */
-.barber-form input {
+.service-form input,
+.service-form textarea {
   width: 100%;
   padding: 14px;
   border: 1px solid rgba(255, 255, 255, 0.2);
@@ -53,22 +50,27 @@
   background: rgba(0, 0, 0, 0.3);
   color: white;
   transition: border-color 0.2s ease;
+  font-family: inherit;
 }
 
-.barber-form input:focus {
+.service-form input:focus,
+.service-form textarea:focus {
   outline: none;
   border-color: #e2c167; /* Resalta en dorado al hacer foco */
 }
 
-/* Contenedor de los botones */
+.service-form textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
 .form-actions {
   display: flex;
-  justify-content: flex-end; /* Alinea los botones a la derecha */
+  justify-content: flex-end;
   gap: 15px;
   margin-top: 40px;
 }
 
-/* Estilo general de los botones del formulario */
 .form-button {
   padding: 12px 25px;
   border: none;
@@ -83,14 +85,11 @@
 
 .form-button.primary {
   background-color: #b4973f; /* Dorado */
-  color: #1a202c; /* Texto oscuro para que contraste con el dorado */
+  color: #1a202c;
 }
+
 .form-button.primary:hover {
   background-color: #d4b868;
-}
-.form-button.primary:disabled {
-  background-color: #a0aec0;
-  cursor: not-allowed;
 }
 
 .form-button.secondary {
@@ -98,30 +97,24 @@
   color: #a0aec0;
   border: 1px solid #a0aec0;
 }
+
 .form-button.secondary:hover {
   background-color: rgba(160, 174, 192, 0.1);
   color: white;
 }
 
-
-/* ================================================= */
-/* =============== CÓDIGO RESPONSIVE =============== */
-/* ================================================= */
-
+/* Responsive para móviles */
 @media (max-width: 480px) {
   .form-container {
-    padding: 25px; /* Menos padding en móviles */
+    padding: 25px;
   }
-
   .form-container h1 {
     font-size: 1.5em;
   }
-
   .form-actions {
-    flex-direction: column-reverse; /* Apila los botones, con el principal arriba */
+    flex-direction: column-reverse;
   }
-
   .form-button {
-    width: 100%; /* Ocupan todo el ancho */
+    width: 100%;
   }
 }

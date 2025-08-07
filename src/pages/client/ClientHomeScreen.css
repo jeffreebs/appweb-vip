@@ -1,74 +1,126 @@
-/* src/pages/client/ClientHomeScreen.css */
+/* src/pages/client/ClientHomeScreen.css (VERSIÓN MEJORADA Y RESPONSIVE) */
 
-.client-dashboard {
-  max-width: 900px;
-  margin: 40px auto;
-  padding: 20px;
-  font-family: sans-serif;
+.client-home-background {
+  min-height: 100vh;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  box-sizing: border-box;
 }
 
-.client-header {
+.client-home-container {
+  width: 100%;
+  max-width: 1000px;
+  color: white;
+}
+
+.client-home-header {
   text-align: center;
   margin-bottom: 40px;
 }
 
-.client-header h1 {
+.client-home-header h1 {
   font-size: 2.5em;
-  color: #2d3748;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
 }
 
-.client-header p {
+.client-home-header p {
   font-size: 1.2em;
-  color: #718096;
+  color: #d1d5db;
 }
 
 .client-menu {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
   margin-bottom: 40px;
 }
 
-.menu-item {
-  background-color: #fff;
+.menu-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
   text-decoration: none;
-  color: inherit;
-  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
-
-.menu-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-}
-
-.menu-item.primary {
-  background-color: #3182ce;
   color: white;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.menu-item h2, .menu-item h3 {
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.menu-card h2, .menu-card h3 {
   margin-top: 0;
   margin-bottom: 10px;
+  color: #e2c167; /* Dorado para los títulos */
 }
 
-.menu-item p {
+.menu-card p {
   margin: 0;
-  font-size: 0.9em;
-  opacity: 0.8;
+  font-size: 0.95em;
+  color: #d1d5db;
 }
 
+/* Estilo especial para la tarjeta principal de "Agendar" */
+.menu-card.primary {
+  background-color: #b4973f;
+  color: #1a202c; /* Texto oscuro para que contraste */
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+.menu-card.primary h2 {
+  color: #1a202c;
+}
+.menu-card.primary p {
+  color: #2d3748;
+}
+
+/* Botón de Logout, copiado del estilo del admin para consistencia */
 .logout-button {
   display: block;
-  margin: 0 auto;
+  width: 50%;
+  max-width: 250px;
+  margin: 70px auto 0 auto;
   padding: 10px 20px;
-  background-color: #e53e3e;
+  background-color: #9b2c2c;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 100em;
   cursor: pointer;
   font-weight: 600;
   font-size: 16px;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+.logout-button:hover {
+  background-color: #c53030;
+  transform: translateY(-2px);
+}
+
+/* ================================================= */
+/* =============== CÓDIGO RESPONSIVE =============== */
+/* ================================================= */
+
+@media (max-width: 768px) {
+  .client-home-background {
+    padding: 30px 15px;
+  }
+  .client-home-header h1 {
+    font-size: 2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .client-menu {
+    grid-template-columns: 1fr; /* Una sola columna en móviles */
+  }
 }
